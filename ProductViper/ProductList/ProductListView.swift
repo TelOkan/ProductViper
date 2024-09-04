@@ -12,18 +12,22 @@ import UIKit
 // protocol
 // reference presenter
 
-protocol AnyView {
-    var presenter: (any AnyPresenter)? { get set }
+protocol ProductListViewProtocol {
+    var presenter: ProductListPresenterInput? { get set }
     
 }
 
-protocol ProductListViewOutput {
-    func update(with products: [Product])
-    func error(with error: Error)
+enum ProductListViewOutput {
+    case update(_ products: [Product])
+    case error(_ error: Error)
 }
 
-class ProductListViewController: UIViewController, AnyView {
-    var presenter: (any AnyPresenter)?
+protocol ProductListViewOutputProtocol {
+    func handleOutput(with type: ProductListViewOutput)
+}
+
+class ProductListViewController: UIViewController, ProductListViewProtocol {
+    var presenter: ProductListPresenterInput?
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -39,6 +43,7 @@ class ProductListViewController: UIViewController, AnyView {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        presenter?.viewDidload()
     }
     
     override func viewDidLayoutSubviews() {
@@ -58,13 +63,8 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 //MARK: - ProductListViewOutput
-extension ProductListViewController: ProductListViewOutput {
-    func update(with products: [Product]) {
-
+extension ProductListViewController: ProductListViewOutputProtocol {
+    func handleOutput(with type: ProductListViewOutput) {
+        
     }
-    
-    func error(with error: any Error) {
-    
-    }
-    
 }

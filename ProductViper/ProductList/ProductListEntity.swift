@@ -9,6 +9,10 @@ import Foundation
 
 // Model
 
+struct ProductsModel: Codable {
+    let products: [Product]
+}
+
 struct Product: Codable {
     var id: Int?
     var title: String?

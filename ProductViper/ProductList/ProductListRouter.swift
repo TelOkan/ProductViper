@@ -12,33 +12,31 @@ import UIKit
 // Entery point
 // screens starts from here.
 
-typealias EntryPoint = AnyView & UIViewController
+protocol ProductListRouterProtocol {
+    var entryView: UIViewController? { get }
 
-protocol AnyRouter {
-    var entry: EntryPoint? { get }
-
-    static func start() -> AnyRouter
+    static func start() -> ProductListRouterProtocol
 }
 
-class ProductListRouter: AnyRouter {
-    var entry: EntryPoint?
+class ProductListRouter: ProductListRouterProtocol {
+    var entryView: UIViewController?
     
-    static func start() -> any AnyRouter {
+    static func start() -> any ProductListRouterProtocol {
         let router = ProductListRouter()
         
-        var view: AnyView = ProductListViewController()
-        let interactor: any AnyInteractor = ProductListInteractor()
-        var presenter: any AnyPresenter = ProductListPresenter()
+        let view = ProductListViewController()
+        let interactor = ProductListInteractor()
         
+        let presenter = ProductListPresenter(
+            interactor: interactor,
+            router: router,
+            view: view
+        )
         
         view.presenter = presenter
-        interactor.refPresenter = presenter
+        interactor.presenter = presenter
         
-        presenter.refRouter = router
-        presenter.refView = view
-        presenter.refInteractor = interactor
-        
-        router.entry = view as? EntryPoint
+        router.entryView = view
         
         return router
     }
