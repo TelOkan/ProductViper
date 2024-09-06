@@ -29,7 +29,7 @@ struct NetworkRequest: NetworkRequestable {
         host: String = AppConstants.baseURL,
         path: String,
         method: HTTPMethod,
-        headerParameters: [String : String] = ["Content-Type": "application/json"],
+        headerParameters: [String : String] = AppConstants.contentType,
         queryParameters: [String : Any]  = [:],
         bodyParameters: [String : Any]  = [:]
     ) {
