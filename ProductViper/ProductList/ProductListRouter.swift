@@ -25,7 +25,13 @@ class ProductListRouter: ProductListRouterProtocol {
         let router = ProductListRouter()
         
         let view = ProductListViewController()
-        let interactor = ProductListInteractor()
+        
+        let networkManager = NetworkManager(
+            config: DefaultNetworkConfig(baseURL: AppConstants.baseURL),
+            sessionManager: DefaulNetworkSessionManager()
+        )
+        
+        let interactor = ProductListInteractor(networkManager: networkManager)
         
         let presenter = ProductListPresenter(
             interactor: interactor,

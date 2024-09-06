@@ -16,6 +16,14 @@
 		32C032D22C85BD6D00BBC249 /* ProductListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032D12C85BD6D00BBC249 /* ProductListPresenter.swift */; };
 		32C032D42C85BD7700BBC249 /* ProductListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032D32C85BD7700BBC249 /* ProductListEntity.swift */; };
 		32C032D62C85BD7E00BBC249 /* ProductListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032D52C85BD7E00BBC249 /* ProductListRouter.swift */; };
+		32C032D92C8AFE6F00BBC249 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032D82C8AFE6F00BBC249 /* HTTPMethod.swift */; };
+		32C032DB2C8AFE8600BBC249 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032DA2C8AFE8600BBC249 /* NetworkRequest.swift */; };
+		32C032DD2C8AFEA100BBC249 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032DC2C8AFEA100BBC249 /* NetworkManager.swift */; };
+		32C032DF2C8AFEC100BBC249 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032DE2C8AFEC100BBC249 /* NetworkSessionManager.swift */; };
+		32C032E22C8AFEF400BBC249 /* Dictionary+Exntensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E12C8AFEF400BBC249 /* Dictionary+Exntensions.swift */; };
+		32C032E42C8AFF0800BBC249 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E32C8AFF0800BBC249 /* NetworkError.swift */; };
+		32C032E62C8AFF4C00BBC249 /* NetworkConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E52C8AFF4C00BBC249 /* NetworkConfigurable.swift */; };
+		32C032E82C8B011900BBC249 /* URLGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E72C8B011900BBC249 /* URLGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +38,14 @@
 		32C032D12C85BD6D00BBC249 /* ProductListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListPresenter.swift; sourceTree = "<group>"; };
 		32C032D32C85BD7700BBC249 /* ProductListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListEntity.swift; sourceTree = "<group>"; };
 		32C032D52C85BD7E00BBC249 /* ProductListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListRouter.swift; sourceTree = "<group>"; };
+		32C032D82C8AFE6F00BBC249 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		32C032DA2C8AFE8600BBC249 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		32C032DC2C8AFEA100BBC249 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		32C032DE2C8AFEC100BBC249 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
+		32C032E12C8AFEF400BBC249 /* Dictionary+Exntensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Exntensions.swift"; sourceTree = "<group>"; };
+		32C032E32C8AFF0800BBC249 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		32C032E52C8AFF4C00BBC249 /* NetworkConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurable.swift; sourceTree = "<group>"; };
+		32C032E72C8B011900BBC249 /* URLGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +78,8 @@
 		32C032B72C85B3C300BBC249 /* ProductViper */ = {
 			isa = PBXGroup;
 			children = (
+				32C032E02C8AFEE000BBC249 /* Extensions */,
+				32C032D72C8A08F800BBC249 /* Networking */,
 				32C032CC2C85BD0800BBC249 /* ProductList */,
 				32C032B82C85B3C300BBC249 /* AppDelegate.swift */,
 				32C032BA2C85B3C300BBC249 /* SceneDelegate.swift */,
@@ -82,6 +100,28 @@
 				32C032D52C85BD7E00BBC249 /* ProductListRouter.swift */,
 			);
 			path = ProductList;
+			sourceTree = "<group>";
+		};
+		32C032D72C8A08F800BBC249 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				32C032D82C8AFE6F00BBC249 /* HTTPMethod.swift */,
+				32C032DA2C8AFE8600BBC249 /* NetworkRequest.swift */,
+				32C032DC2C8AFEA100BBC249 /* NetworkManager.swift */,
+				32C032DE2C8AFEC100BBC249 /* NetworkSessionManager.swift */,
+				32C032E32C8AFF0800BBC249 /* NetworkError.swift */,
+				32C032E52C8AFF4C00BBC249 /* NetworkConfigurable.swift */,
+				32C032E72C8B011900BBC249 /* URLGenerator.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		32C032E02C8AFEE000BBC249 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				32C032E12C8AFEF400BBC249 /* Dictionary+Exntensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,12 +194,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C032DF2C8AFEC100BBC249 /* NetworkSessionManager.swift in Sources */,
 				32C032D62C85BD7E00BBC249 /* ProductListRouter.swift in Sources */,
 				32C032D42C85BD7700BBC249 /* ProductListEntity.swift in Sources */,
+				32C032DD2C8AFEA100BBC249 /* NetworkManager.swift in Sources */,
 				32C032CE2C85BD5700BBC249 /* ProductListView.swift in Sources */,
 				32C032B92C85B3C300BBC249 /* AppDelegate.swift in Sources */,
+				32C032D92C8AFE6F00BBC249 /* HTTPMethod.swift in Sources */,
+				32C032E82C8B011900BBC249 /* URLGenerator.swift in Sources */,
+				32C032E62C8AFF4C00BBC249 /* NetworkConfigurable.swift in Sources */,
 				32C032D02C85BD6200BBC249 /* ProductListInteractor.swift in Sources */,
 				32C032D22C85BD6D00BBC249 /* ProductListPresenter.swift in Sources */,
+				32C032DB2C8AFE8600BBC249 /* NetworkRequest.swift in Sources */,
+				32C032E42C8AFF0800BBC249 /* NetworkError.swift in Sources */,
+				32C032E22C8AFEF400BBC249 /* Dictionary+Exntensions.swift in Sources */,
 				32C032BB2C85B3C300BBC249 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

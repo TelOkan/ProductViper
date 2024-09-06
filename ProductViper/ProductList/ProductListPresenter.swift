@@ -44,7 +44,12 @@ class ProductListPresenter: ProductListPresenterProtocol {
 //MARK: - ProductListPresenterInput
 extension ProductListPresenter: ProductListPresenterInput {
     func viewDidload() {
-        interactor?.fetchProducts()
+        Task { [weak self] in
+            guard let self else { return }
+            
+            try await interactor?.fetchProducts()
+        }
+        
     }
 }
 

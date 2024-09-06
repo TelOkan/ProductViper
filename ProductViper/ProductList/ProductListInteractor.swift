@@ -13,34 +13,43 @@ import Foundation
 
 protocol ProductListInteractorProtocol: AnyObject {
     var presenter: ProductListPresenterOutput? { get set }
+    var networkManager: any NetworkServiceProtocol { get set }
 }
 
 protocol ProductListInteractorInput: ProductListInteractorProtocol {
-    func fetchProducts()
+    func fetchProducts() async throws
 }
 
+struct AppConstants {
+    static let baseURL = "dummyjson.com"
+}
 
+struct APIEndpoints {
+    static let products = "/products"
+}
 
 class ProductListInteractor: ProductListInteractorInput {
     var presenter: ProductListPresenterOutput?
+    var networkManager: any NetworkServiceProtocol
     
-    func fetchProducts() {
-        guard let url = URL(string: "https://dummyjson.com/products") else { return }
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            guard let self else { return }
-            guard let data = data, error == nil else {
-                return
-            }
+    init(
+        presenter: ProductListPresenterOutput? = nil,
+        networkManager: any NetworkServiceProtocol
+    ) {
+        self.presenter = presenter
+        self.networkManager = networkManager
+    }
+    
+    func fetchProducts() async throws {
+        do {
+            let request = NetworkRequest(path: APIEndpoints.products, method: .get)
+            let productList: ProductsModel = try await networkManager.request(request: request)
             
-            
-            do {
-                let products = try JSONDecoder().decode(ProductsModel.self, from: data).products
-                presenter?.didFetchProducts(with: .success(products))
-            } catch {
-                presenter?.didFetchProducts(with: .failure(error))
-            }
+            presenter?.didFetchProducts(with: .success(productList.products))
+        } catch {
+            presenter?.didFetchProducts(with: .failure(error))
         }
         
-        task.resume()
     }
 }
+

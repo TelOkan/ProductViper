@@ -65,6 +65,11 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource 
 //MARK: - ProductListViewOutput
 extension ProductListViewController: ProductListViewOutputProtocol {
     func handleOutput(with type: ProductListViewOutput) {
-        
+        switch type {
+        case .update(let _):
+            print("Update")
+        case .error(let _):
+            print("error")
+        }
     }
 }
