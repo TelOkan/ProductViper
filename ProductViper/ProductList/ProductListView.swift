@@ -32,23 +32,59 @@ class ProductListViewController: UIViewController, ProductListViewProtocol {
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.translatesAutoresizingMaskIntoConstraints = false
         table.isHidden = true
-
         return table
     }()
     
+    private var activityIndicatorView: UIActivityIndicatorView =  {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.startAnimating()
+        return indicator
+    }()
+    
+    override func loadView() {
+        super.loadView()
+        addSubviews()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
-        view.addSubview(tableView)
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         presenter?.viewDidload()
     }
+
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+    }
+}
+
+//MARK: - Prepare subviews
+extension ProductListViewController {
+    private func addSubviews() {
+        view.backgroundColor = .systemBackground
+        view.addSubview(tableView)
+        view.addSubview(activityIndicatorView)
+        
+        makeConstraint()
+    }
+    
+    private func makeConstraint() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
     }
 }
 
