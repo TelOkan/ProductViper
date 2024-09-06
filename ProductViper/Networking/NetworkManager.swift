@@ -12,19 +12,14 @@ protocol NetworkServiceProtocol {
 }
 
 final class NetworkManager: NetworkServiceProtocol {
-    private let config: NetworkConfigurable
     private let sessionManager: NetworkSessionManagerProtocol
     
-    init(
-        config: NetworkConfigurable,
-        sessionManager: NetworkSessionManagerProtocol
-    ) {
-        self.config = config
+    init(sessionManager: NetworkSessionManagerProtocol) {
         self.sessionManager = sessionManager
     }
     
     func request<T: Decodable>(request: NetworkRequest) async throws -> T {
-        let (data, response) = try await sessionManager.request(with: config, from: request)
+        let (data, response) = try await sessionManager.request(with: request)
         guard let response = response as? HTTPURLResponse else { throw NetworkError.noResponse }
         guard response.statusCode == 200 else { throw NetworkError.failed }
         guard let data else { throw NetworkError.noData }
@@ -33,7 +28,7 @@ final class NetworkManager: NetworkServiceProtocol {
     }
     
     
-    func decode<T: Decodable>(_ data: Data) throws -> T {
+    private func decode<T: Decodable>(_ data: Data) throws -> T {
         do {
             let decodedData = try JSONDecoder().decode(T.self, from: data)
             return decodedData

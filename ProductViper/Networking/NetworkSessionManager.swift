@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkSessionManagerProtocol {
-    func request(with config: NetworkConfigurable, from request: NetworkRequest) async throws -> (Data?, URLResponse?)
+    func request(with request: NetworkRequest) async throws -> (Data?, URLResponse?)
 }
 
 final class DefaulNetworkSessionManager: NetworkSessionManagerProtocol {
@@ -24,8 +24,8 @@ final class DefaulNetworkSessionManager: NetworkSessionManagerProtocol {
     }
     
     
-    func request(with config: NetworkConfigurable, from request: NetworkRequest) async throws -> (Data?, URLResponse?) {
-        let urlRequest = try requestGenerator.generateURL(with: config, from: request)
+    func request(with request: NetworkRequest) async throws -> (Data?, URLResponse?) {
+        let urlRequest = try requestGenerator.generateURL(from: request)
         
         do {
             return try await session.data(for: urlRequest)

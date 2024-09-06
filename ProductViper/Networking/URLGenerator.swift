@@ -8,12 +8,12 @@
 import Foundation
 
 protocol URLRequestGeneratorProtocol {
-    func generateURL(with config: NetworkConfigurable, from request: NetworkRequest) throws -> URLRequest
+    func generateURL(from request: NetworkRequest) throws -> URLRequest
 }
 
 final class DefaultURLRequestGenerator: URLRequestGeneratorProtocol {
-    func generateURL(with config: NetworkConfigurable, from request: NetworkRequest) throws -> URLRequest {
-        let url = try createURL(with: config, from: request)
+    func generateURL(from request: NetworkRequest) throws -> URLRequest {
+        let url = try createURL(from: request)
         var urlRequest = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 15)
         urlRequest.httpMethod = request.method.rawValue
         
@@ -30,7 +30,7 @@ final class DefaultURLRequestGenerator: URLRequestGeneratorProtocol {
             }
         }
         
-        config.headers.forEach { key, value in
+        request.headerParameters.forEach { key, value in
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
@@ -38,10 +38,10 @@ final class DefaultURLRequestGenerator: URLRequestGeneratorProtocol {
     }
     
     
-    private func createURL(with config: NetworkConfigurable, from request: NetworkRequest) throws -> URL {
+    private func createURL(from request: NetworkRequest) throws -> URL {
         var components = URLComponents()
-        components.scheme = "https"
-        components.host = config.baseURL
+        components.scheme = request.scheme
+        components.host = request.host
         components.path = request.path
         components.queryItems = request.queryParameters.map { URLQueryItem(name: $0, value: "\($1)") }
         guard let url = components.url else { throw NetworkError.badURL }

@@ -27,7 +27,6 @@ class ProductListRouter: ProductListRouterProtocol {
         let view = ProductListViewController()
         
         let networkManager = NetworkManager(
-            config: DefaultNetworkConfig(baseURL: AppConstants.baseURL),
             sessionManager: DefaulNetworkSessionManager()
         )
         

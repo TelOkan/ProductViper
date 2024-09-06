@@ -22,6 +22,7 @@ protocol ProductListInteractorInput: ProductListInteractorProtocol {
 
 struct AppConstants {
     static let baseURL = "dummyjson.com"
+    static let scheme = "https"
 }
 
 struct APIEndpoints {

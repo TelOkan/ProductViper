@@ -16,6 +16,8 @@ protocol NetworkRequestable {
 }
 
 struct NetworkRequest: NetworkRequestable {
+    var scheme: String
+    var host: String
     var path: String
     var method: HTTPMethod
     var headerParameters: [String : String]
@@ -23,12 +25,16 @@ struct NetworkRequest: NetworkRequestable {
     var bodyParameters: [String : Any]
     
     init(
+        scheme: String = AppConstants.scheme,
+        host: String = AppConstants.baseURL,
         path: String,
         method: HTTPMethod,
-        headerParameters: [String : String] = [:],
+        headerParameters: [String : String] = ["Content-Type": "application/json"],
         queryParameters: [String : Any]  = [:],
         bodyParameters: [String : Any]  = [:]
     ) {
+        self.scheme = scheme
+        self.host = host
         self.path = path
         self.method = method
         self.headerParameters = headerParameters

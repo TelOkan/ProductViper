@@ -22,7 +22,6 @@
 		32C032DF2C8AFEC100BBC249 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032DE2C8AFEC100BBC249 /* NetworkSessionManager.swift */; };
 		32C032E22C8AFEF400BBC249 /* Dictionary+Exntensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E12C8AFEF400BBC249 /* Dictionary+Exntensions.swift */; };
 		32C032E42C8AFF0800BBC249 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E32C8AFF0800BBC249 /* NetworkError.swift */; };
-		32C032E62C8AFF4C00BBC249 /* NetworkConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E52C8AFF4C00BBC249 /* NetworkConfigurable.swift */; };
 		32C032E82C8B011900BBC249 /* URLGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032E72C8B011900BBC249 /* URLGenerator.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 		32C032DE2C8AFEC100BBC249 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
 		32C032E12C8AFEF400BBC249 /* Dictionary+Exntensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Exntensions.swift"; sourceTree = "<group>"; };
 		32C032E32C8AFF0800BBC249 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		32C032E52C8AFF4C00BBC249 /* NetworkConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurable.swift; sourceTree = "<group>"; };
 		32C032E72C8B011900BBC249 /* URLGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +108,6 @@
 				32C032DC2C8AFEA100BBC249 /* NetworkManager.swift */,
 				32C032DE2C8AFEC100BBC249 /* NetworkSessionManager.swift */,
 				32C032E32C8AFF0800BBC249 /* NetworkError.swift */,
-				32C032E52C8AFF4C00BBC249 /* NetworkConfigurable.swift */,
 				32C032E72C8B011900BBC249 /* URLGenerator.swift */,
 			);
 			path = Networking;
@@ -202,7 +199,6 @@
 				32C032B92C85B3C300BBC249 /* AppDelegate.swift in Sources */,
 				32C032D92C8AFE6F00BBC249 /* HTTPMethod.swift in Sources */,
 				32C032E82C8B011900BBC249 /* URLGenerator.swift in Sources */,
-				32C032E62C8AFF4C00BBC249 /* NetworkConfigurable.swift in Sources */,
 				32C032D02C85BD6200BBC249 /* ProductListInteractor.swift in Sources */,
 				32C032D22C85BD6D00BBC249 /* ProductListPresenter.swift in Sources */,
 				32C032DB2C8AFE8600BBC249 /* NetworkRequest.swift in Sources */,
