@@ -23,7 +23,9 @@ final class NetworkManager: NetworkServiceProtocol {
         guard let response = response as? HTTPURLResponse else { throw NetworkError.noResponse }
         guard response.statusCode == 200 else { throw NetworkError.failed }
         guard let data else { throw NetworkError.noData }
-
+        if let jsonString = String(data: data, encoding: .utf8) {
+            //                    print(jsonString)
+        }
         return try decode(data)
     }
     
@@ -35,5 +37,16 @@ final class NetworkManager: NetworkServiceProtocol {
         } catch {
             throw NetworkError.decode
         }
+    }
+}
+
+
+extension Encodable {
+    func prettyPrintedJSONString() -> String? {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        guard let data = try? encoder.encode(self) else { return nil }
+        return String(data: data, encoding: .utf8) ?? nil
+        
     }
 }

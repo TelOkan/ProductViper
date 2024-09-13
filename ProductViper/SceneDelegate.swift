@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let router = ProductListRouter.start()
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = router.entryView
+        let navigationController = UINavigationController(rootViewController: router.entryView ?? UIViewController())
+        window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
     }

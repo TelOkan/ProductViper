@@ -18,6 +18,6 @@ struct Product: Codable {
     var title: String?
     var description: String?
     var category: String?
-    var image: String?
+    var images: [String]?
     var price: Double?
 }

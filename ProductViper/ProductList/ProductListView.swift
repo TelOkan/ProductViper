@@ -28,12 +28,21 @@ protocol ProductListViewOutputProtocol {
 
 class ProductListViewController: UIViewController, ProductListViewProtocol {
     var presenter: ProductListPresenterInput?
-    
-    private let tableView: UITableView = {
+    var products: [Product] = []
+        
+    private lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(ProductListViewCell.self, forCellReuseIdentifier: ProductListViewCell.reuseID)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.isHidden = true
+        table.showsVerticalScrollIndicator = false
+        table.backgroundColor = .systemGray5
+        table.layer.cornerRadius = 8
+        table.layer.masksToBounds = true
+        table.layer.shadowRadius = 4
+        table.layer.shadowOpacity = 0.25
+        table.layer.shadowColor = UIColor.gray.cgColor
+        table.layer.shadowOffset = .init(width: 0, height: 4)
         return table
     }()
     
@@ -46,55 +55,66 @@ class ProductListViewController: UIViewController, ProductListViewProtocol {
     
     override func loadView() {
         super.loadView()
+        
         addSubviews()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         tableView.delegate = self
         tableView.dataSource = self
         presenter?.viewDidload()
+        
+        title = "Products"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
-    }
 }
 
 //MARK: - Prepare subviews
 extension ProductListViewController {
     private func addSubviews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray5
+        
+        
+        
+        
         view.addSubview(tableView)
         view.addSubview(activityIndicatorView)
-        
         makeConstraint()
     }
     
     private func makeConstraint() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
             activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
+        
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 16, right: 0)
+        
+        tableView.tableHeaderView = UIView() //to close first item seperator where top.
     }
 }
 
 extension ProductListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return .zero
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let productCell = tableView.dequeueReusableCell(withIdentifier: ProductListViewCell.reuseID, for: indexPath) as? ProductListViewCell else {
+            return UITableViewCell()
+        }
+        
+        productCell.loadCell(with: products[indexPath.row])
+        return productCell
     }
 }
 
@@ -102,8 +122,16 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource 
 extension ProductListViewController: ProductListViewOutputProtocol {
     func handleOutput(with type: ProductListViewOutput) {
         switch type {
-        case .update(let _):
-            print("Update")
+        case .update(let products):
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                activityIndicatorView.stopAnimating()
+                activityIndicatorView.isHidden = true
+                tableView.isHidden = false
+                
+                self.products = products
+                self.tableView.reloadData()
+            }
         case .error(let _):
             print("error")
         }
