@@ -85,20 +85,33 @@ class ProductListViewCell: UITableViewCell {
         accessoryType = .disclosureIndicator
     }
    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        image.image = nil
-    }
-    
     func loadCell(with product: Product) {
         guard let imageURL = product.images?.first?.toURL() else { return }
-        image.kf.indicatorType = .activity
-        image.kf.setImage(with: imageURL)
-        title.text = product.title
-        price.text = product.price?.toCurrency()
+        setImage(with: imageURL, to: image)
+        setLabels(with: product)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    private func setImage(with url: URL, to imageView: UIImageView) {
+        let processor = DownsamplingImageProcessor(size: imageView.bounds.size)
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(
+            with: url,
+            options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage,
+                .loadDiskFileSynchronously
+            ])
+    }
+    
+    private func setLabels(with product: Product) {
+        title.text = product.title
+        price.text = product.price?.toCurrency()
     }
 }
