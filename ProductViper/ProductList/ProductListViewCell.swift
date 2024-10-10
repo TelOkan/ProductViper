@@ -19,7 +19,6 @@ class ProductListViewCell: UITableViewCell {
        return image
     }()
     
-    
     private let title: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .callout)
@@ -94,7 +93,6 @@ class ProductListViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func setImage(with url: URL, to imageView: UIImageView) {
         let processor = DownsamplingImageProcessor(size: imageView.bounds.size)

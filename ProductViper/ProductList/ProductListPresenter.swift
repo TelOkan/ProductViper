@@ -18,10 +18,12 @@ protocol ProductListPresenterProtocol: AnyObject {
 
 protocol ProductListPresenterInput {
     func viewDidload()
+    func didSelectRow(with id: Int)
 }
 
 protocol ProductListPresenterOutput {
     func didFetchProducts(with result: Result<[Product], Error>)
+    func didFetchProduct(with result: Result<Product, Error>)
 }
 
 class ProductListPresenter: ProductListPresenterProtocol {
@@ -46,10 +48,15 @@ extension ProductListPresenter: ProductListPresenterInput {
     func viewDidload() {
         Task { [weak self] in
             guard let self else { return }
-            
             try await interactor?.fetchProducts()
         }
-        
+    }
+    
+    func didSelectRow(with id: Int) {
+        Task { [weak self] in
+            guard let self else { return }
+            try await interactor?.fetchProduct(with: id)
+        }
     }
 }
 
@@ -62,6 +69,15 @@ extension ProductListPresenter: ProductListPresenterOutput {
             view?.handleOutput(with: .update(products))
         case .failure(let error):
             view?.handleOutput(with: .error(error))
+        }
+    }
+    
+    func didFetchProduct(with result: Result<Product, Error>) {
+        switch result {
+        case .success(let product):
+            print("Product: ", product)
+        case .failure(let error):
+            print("error: ", error.localizedDescription)
         }
     }
 }

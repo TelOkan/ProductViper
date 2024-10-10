@@ -77,10 +77,6 @@ class ProductListViewController: UIViewController, ProductListViewProtocol {
 extension ProductListViewController {
     private func addSubviews() {
         view.backgroundColor = .systemGray5
-        
-        
-        
-        
         view.addSubview(tableView)
         view.addSubview(activityIndicatorView)
         makeConstraint()
@@ -112,9 +108,14 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource 
         guard let productCell = tableView.dequeueReusableCell(withIdentifier: ProductListViewCell.reuseID, for: indexPath) as? ProductListViewCell else {
             return UITableViewCell()
         }
-        
         productCell.loadCell(with: products[indexPath.row])
+        productCell.selectionStyle = .none
         return productCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let id = products[indexPath.row].id else { return }
+        presenter?.didSelectRow(with: id)
     }
 }
 

@@ -18,6 +18,7 @@ protocol ProductListInteractorProtocol: AnyObject {
 
 protocol ProductListInteractorInput: ProductListInteractorProtocol {
     func fetchProducts() async throws
+    func fetchProduct(with id: Int) async throws
 }
 
 struct AppConstants {
@@ -28,6 +29,7 @@ struct AppConstants {
 
 struct APIEndpoints {
     static let products = "/products"
+    static let product = "/products/"
 }
 
 class ProductListInteractor: ProductListInteractorInput {
@@ -51,7 +53,18 @@ class ProductListInteractor: ProductListInteractorInput {
         } catch {
             presenter?.didFetchProducts(with: .failure(error))
         }
-        
+    }
+    
+    func fetchProduct(with id: Int) async throws {
+        do {
+            let path = APIEndpoints.product + id.description
+            let request = NetworkRequest(path: path, method: .get)
+            let product: Product = try await networkManager.request(request: request)
+            
+            presenter?.didFetchProduct(with: .success(product))
+        } catch {
+            presenter?.didFetchProduct(with: .failure(error))
+        }
     }
 }
 

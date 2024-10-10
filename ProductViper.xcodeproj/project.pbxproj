@@ -86,6 +86,7 @@
 			children = (
 				32C032E02C8AFEE000BBC249 /* Extensions */,
 				32C032D72C8A08F800BBC249 /* Networking */,
+				32C032F22CB82D3200BBC249 /* ProductDetail */,
 				32C032CC2C85BD0800BBC249 /* ProductList */,
 				32C032B82C85B3C300BBC249 /* AppDelegate.swift */,
 				32C032BA2C85B3C300BBC249 /* SceneDelegate.swift */,
@@ -130,6 +131,13 @@
 				32C032F02C9434AA00BBC249 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		32C032F22CB82D3200BBC249 /* ProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProductDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
