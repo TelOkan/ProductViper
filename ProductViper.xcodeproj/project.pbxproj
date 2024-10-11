@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		324AA08B2CB96C3F00236213 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AA08A2CB96C3F00236213 /* NetworkConstants.swift */; };
 		32C032B92C85B3C300BBC249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032B82C85B3C300BBC249 /* AppDelegate.swift */; };
 		32C032BB2C85B3C300BBC249 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C032BA2C85B3C300BBC249 /* SceneDelegate.swift */; };
 		32C032C22C85B3C400BBC249 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C032C12C85B3C400BBC249 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		324AA08A2CB96C3F00236213 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		32C032B52C85B3C300BBC249 /* ProductViper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductViper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C032B82C85B3C300BBC249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C032BA2C85B3C300BBC249 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				32C032DE2C8AFEC100BBC249 /* NetworkSessionManager.swift */,
 				32C032E32C8AFF0800BBC249 /* NetworkError.swift */,
 				32C032E72C8B011900BBC249 /* URLGenerator.swift */,
+				324AA08A2CB96C3F00236213 /* NetworkConstants.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				32C032DD2C8AFEA100BBC249 /* NetworkManager.swift in Sources */,
 				32C032F62CB94E4800BBC249 /* ProductDetailInteractor.swift in Sources */,
 				32C032CE2C85BD5700BBC249 /* ProductListView.swift in Sources */,
+				324AA08B2CB96C3F00236213 /* NetworkConstants.swift in Sources */,
 				32C032F12C9434AA00BBC249 /* Double+Extensions.swift in Sources */,
 				32C032B92C85B3C300BBC249 /* AppDelegate.swift in Sources */,
 				32C032D92C8AFE6F00BBC249 /* HTTPMethod.swift in Sources */,
