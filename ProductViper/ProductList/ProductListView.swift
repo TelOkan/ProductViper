@@ -14,16 +14,10 @@ import UIKit
 
 protocol ProductListViewProtocol {
     var presenter: ProductListPresenterInput? { get set }
-    
-}
-
-enum ProductListViewOutput {
-    case update(_ products: [Product])
-    case error(_ error: Error)
 }
 
 protocol ProductListViewOutputProtocol {
-    func handleOutput(with type: ProductListViewOutput)
+    func handleOutput(with result: ProductListViewOutput)
 }
 
 class ProductListViewController: UIViewController, ProductListViewProtocol {
@@ -121,8 +115,8 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource 
 
 //MARK: - ProductListViewOutput
 extension ProductListViewController: ProductListViewOutputProtocol {
-    func handleOutput(with type: ProductListViewOutput) {
-        switch type {
+    func handleOutput(with result: ProductListViewOutput) {
+        switch result {
         case .update(let products):
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }

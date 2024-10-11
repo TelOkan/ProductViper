@@ -53,10 +53,7 @@ extension ProductListPresenter: ProductListPresenterInput {
     }
     
     func didSelectRow(with id: Int) {
-        Task { [weak self] in
-            guard let self else { return }
-            try await interactor?.fetchProduct(with: id)
-        }
+        router?.routeToDetail(with: id)
     }
 }
 

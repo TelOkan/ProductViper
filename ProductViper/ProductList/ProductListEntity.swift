@@ -21,3 +21,8 @@ struct Product: Codable {
     var images: [String]?
     var price: Double?
 }
+
+enum ProductListViewOutput {
+    case update(_ products: [Product])
+    case error(_ error: Error)
+}

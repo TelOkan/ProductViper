@@ -16,6 +16,8 @@ protocol ProductListRouterProtocol {
     var entryView: UIViewController? { get }
 
     static func start() -> ProductListRouterProtocol
+    
+    func routeToDetail(with id: Int)
 }
 
 class ProductListRouter: ProductListRouterProtocol {
@@ -44,5 +46,26 @@ class ProductListRouter: ProductListRouterProtocol {
         router.entryView = view
         
         return router
+    }
+    
+    func routeToDetail(with id: Int) {
+           let router = ProductDetaiRouter()
+           let view = ProductDetailView()
+           let networkManager: NetworkManager = .init(sessionManager: DefaulNetworkSessionManager())
+   
+           let interactor = ProductDetailInteractor(networkManager: networkManager)
+   
+           let presenter = ProductDetailPresenter(
+               interactor: interactor,
+               router: router,
+               view: view,
+               id: id
+           )
+   
+           view.presenter = presenter
+           interactor.presenter = presenter
+   
+           guard let entryView else { return }
+           entryView.navigationController?.pushViewController(view, animated: true)
     }
 }
