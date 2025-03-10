@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ProductDetailRouterProtocol {
+protocol ProductDetailRouterProtocol: AnyObject {
     
 }
 class ProductDetaiRouter: ProductDetailRouterProtocol {

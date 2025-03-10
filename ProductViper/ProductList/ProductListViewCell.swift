@@ -59,7 +59,12 @@ class ProductListViewCell: UITableViewCell {
         self.configureCell()
     }
  
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.image.image = nil
+        self.title.text = nil
+        self.price.text = nil
+    }
     
     private func configureCell() {
         

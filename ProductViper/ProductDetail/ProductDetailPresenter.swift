@@ -12,18 +12,18 @@ protocol ProductDetailPresenterProtocol {
     var view: ProductDetailViewOutputProtocol? { get set }
 }
 
-protocol ProductDetailPresenterInput {
+protocol ProductDetailPresenterInput: AnyObject {
     func viewDidload()
 }
 
-protocol ProductDetailPresenterOutput {
+protocol ProductDetailPresenterOutput: AnyObject {
     func didFetchProduct(with result: Result<Product, Error>)
 }
 
 class ProductDetailPresenter: ProductDetailPresenterProtocol {
     var interactor: ProductDetailInteractorInput?
     var router: ProductDetailRouterProtocol?
-    var view: ProductDetailViewOutputProtocol?
+    weak var view: ProductDetailViewOutputProtocol?
     private let id: Int
     
     init(

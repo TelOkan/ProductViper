@@ -13,7 +13,7 @@ protocol ProductDetailViewProtocol {
     var presenter: ProductDetailPresenterInput? { get set }
 }
 
-protocol ProductDetailViewOutputProtocol{
+protocol ProductDetailViewOutputProtocol: AnyObject {
     func handleOutput(with result: ProductDetailViewOutput)
 }
 

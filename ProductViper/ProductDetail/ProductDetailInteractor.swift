@@ -11,12 +11,12 @@ protocol ProductDetailInteractorProtocol {
     var networkManager: any NetworkServiceProtocol { get set }
 }
 
-protocol ProductDetailInteractorInput: ProductDetailInteractorProtocol {
+protocol ProductDetailInteractorInput: AnyObject, ProductDetailInteractorProtocol {
     func fetchProduct(with id: Int) async throws
 }
 
 class ProductDetailInteractor: ProductDetailInteractorInput {
-    var presenter: ProductDetailPresenterOutput?
+    weak var presenter: ProductDetailPresenterOutput?
     var networkManager: any NetworkServiceProtocol
     
     init(
